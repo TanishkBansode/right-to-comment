@@ -1,0 +1,3 @@
+ancestorEntries = [".env"]
+ourEntries = [".env"]
+theirEntries = [".env"]

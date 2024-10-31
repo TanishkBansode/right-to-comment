@@ -1,0 +1,7 @@
+{{range .comments}}
+    <div>
+        <strong>Comment {{.FormattedDate}}:</strong> {{.Text}}
+    </div>
+{{else}}
+    <p>No comments yet.</p>
+{{end}}
