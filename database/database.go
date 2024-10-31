@@ -29,3 +29,37 @@ func InitDB(dbPath string) error {
 	}
 	return nil
 }
+
+func AddComment(videoId, commentText string) error {
+	_, err := db.ExecContext(
+		context.Background(),
+		"INSERT INTO comments (video_id, comment) VALUES (?, ?)",
+		videoId, commentText,
+	)
+	return err
+}
+
+func GetComments(videoId string) ([]map[string]string, error) {
+	rows, err := db.QueryContext(
+		context.Background(),
+		"SELECT comment, created_at FROM comments WHERE video_id = ? ORDER BY created_at DESC",
+		videoId,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var comments []map[string]string
+	for rows.Next() {
+		var comment, createdAt string
+		if err := rows.Scan(&comment, &createdAt); err != nil {
+			return nil, err
+		}
+		comments = append(comments, map[string]string{
+			"text":      comment,
+			"createdAt": createdAt,
+		})
+	}
+	return comments, nil
+}
