@@ -8,3 +8,4 @@ Things to do:<br>
 -> User authentication using firebase.<br>
 -> Make UI better<br>
 -> Suggestions webpage, so users could suggest what should I improve<br>
+-> Tell friends
