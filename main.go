@@ -33,6 +33,8 @@ func main() {
 
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*")
+	router.Static("/static", "./static")
+
 	router.GET("/comments/:videoId", getComments)
 	router.POST("/comments/:videoId", addComment)
 	router.GET("/", showHomePage)
@@ -134,7 +136,7 @@ func addComment(c *gin.Context) {
 
 	err := database.AddComment(videoId, commentText)
 	if err != nil {
-		c.HTML(http.StatusInternalServerError, "error_template", gin.H{"error": "Failed to add comment"})
+		c.HTML(http.StatusInternalServerError, "error_template.html", gin.H{"error": "Failed to add comment"})
 		return
 	}
 
