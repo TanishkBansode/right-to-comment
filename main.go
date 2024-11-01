@@ -152,10 +152,21 @@ func getComments(c *gin.Context) {
 		return
 	}
 
-	// Create a string builder for comments HTML
 	var commentsHTML strings.Builder
 	for _, comment := range comments {
-		commentsHTML.WriteString(fmt.Sprintf("<div><p><strong>%s</strong>: %s</p></div>", comment["createdAt"], comment["text"]))
+		// Parse and reformat the date
+		parsedDate, err := time.Parse(time.RFC3339, comment["createdAt"])
+		if err != nil {
+			log.Println("Error parsing date:", err)
+			parsedDate = time.Now() // Fallback if parsing fails
+		}
+		formattedDate := parsedDate.Format("2 Jan 2006")
+
+		// Construct HTML for each comment
+		commentsHTML.WriteString(fmt.Sprintf(
+			"<div><p>%s</p><p style='font-size: medium; color: gray;'>%s</p></div>",
+			comment["text"], formattedDate,
+		))
 	}
 
 	c.Data(http.StatusOK, "text/html", []byte(commentsHTML.String()))
