@@ -3,13 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Search</title>
+  <title>Right To Comment - Search</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <h1>Search for a YouTube Video</h1>
-  <form action="/search" method="POST">
-    <input type="text" name="query" placeholder="Enter search term" required>
-    <button type="submit">Search</button>
-  </form>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header with Logo and Navigation -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo and Brand -->
+        <div class="flex items-center">
+          <img src="/static/logo.png" alt="Right To Comment Logo" class="h-8 w-8">
+          <span class="ml-3 text-xl font-semibold text-gray-900">Right To Comment</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex items-center space-x-6">
+          <a href="https://github.com/TanishkBansode/right-to-comment" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+            GitHub
+          </a>
+          <a href="https://bento.me/TanishkBansode" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+            Bento
+          </a>
+          <a href="/info" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+            More info
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex items-center justify-center px-4 sm:px-6 lg:px-8 mt-16">
+    <div class="w-full max-w-lg">
+      <div class="bg-white py-8 px-6 shadow-lg rounded-lg border border-gray-100">
+        <h2 class="text-2xl font-bold text-gray-900 text-center mb-8">
+          Search for a YouTube Video
+        </h2>
+        
+        <form action="/search" method="POST" class="space-y-6">
+          <div>
+            <div class="relative rounded-md shadow-sm">
+              <input 
+                type="text" 
+                name="query" 
+                required
+                placeholder="Enter search term" 
+                class="block w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 sm:text-sm"
+              >
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
